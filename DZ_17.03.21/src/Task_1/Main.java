@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         HashMap<String, Integer> map = new HashMap<>();
         try {
-            File file = new File("/Users/timir/IdeaProjects/DZ_18.03.21/src/Task_1/text.txt");
+            File file = new File("/Users/timir/IdeaProjects/DZ_17.03.21/src/Task_1/text.txt");
             Scanner sc = new Scanner(file);
             String line = sc.nextLine();
             while (sc.hasNext()) {
