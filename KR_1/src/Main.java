@@ -14,9 +14,19 @@ public class Main {
             String[] text1 = line.split("\\|");
             addToArray(text1);
             line = reader.readLine();
-
         }
         printAll(buyers);
+        BuyerByCityCountComparator buyerByCityCountComparator = new BuyerByCityCountComparator();
+        BuyerByNameComparator buyerByNameComparator = new BuyerByNameComparator();
+        BuyerByOrdersCountComparator buyerByOrdersCountComparator = new BuyerByOrdersCountComparator();
+
+        TreeSet<Buyer> sortedByName = new TreeSet<>(buyerByNameComparator.thenComparing(buyerByCityCountComparator.thenComparing(buyerByOrdersCountComparator)));
+        TreeSet<Buyer> sortedByOrders = new TreeSet<>(buyerByOrdersCountComparator.thenComparing(buyerByCityCountComparator.thenComparing(buyerByNameComparator)));
+        sortedByName.addAll(buyers);
+        sortedByOrders.addAll(buyers);
+        writeFile(sortedByName , "output1.txt");
+        writeFile(sortedByOrders ,"output2.txt");
+
     }
 
     static void addToArray(String[] str) {
@@ -84,5 +94,12 @@ public class Main {
             if (orders.get(i).nameOfProduct.equals(name)) return i;
         }
         return -1;
+    }
+
+    public static void writeFile(TreeSet<Buyer> buyers1 , String nameOfFile){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nameOfFile))) {
+            oos.writeObject(buyers);
+        } catch (IOException ignored) {
+        }
     }
 }
