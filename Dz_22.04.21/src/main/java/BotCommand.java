@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class BotCommand {
     ArrayList<Tables> tables1 = new ArrayList<>();
-    Scanner in = new Scanner(System.in);
     private int count = 0;
 
     @SomeAnnotation(names = {"/help", "/command"}, description = "Get command", args = "")
@@ -56,12 +55,15 @@ public class BotCommand {
     @SomeAnnotation(names = "/seeorders", description = "see Array List of orders", args = "")
     public String seeOrders(String[] args) {
         String res = "";
-        System.out.println(tables1.size());
-        System.out.println(tables1);
         for (int i = 0; i < tables1.size(); i++) {
             res += (i+1) + ":--- " + tables1.get(i).toString() + " ";
         }
         return res;
+    }
+    @SomeAnnotation(names = "/cleanlist",description = "Clean a Array list of orders", args = "")
+    public String clean(String [] args){
+        tables1.clear();
+        return "Array list is clear";
     }
     @SomeAnnotation(names = {"/revers", "/rev"}, description = "Revers a word", args = "")
     public String reversWord(String[] args) {
