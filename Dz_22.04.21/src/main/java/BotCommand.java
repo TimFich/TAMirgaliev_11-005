@@ -56,14 +56,25 @@ public class BotCommand {
     public String seeOrders(String[] args) {
         String res = "";
         for (int i = 0; i < tables1.size(); i++) {
-            res += (i+1) + ":--- " + tables1.get(i).toString() + " ";
+            res += (i + 1) + ":--- " + tables1.get(i).toString() + " ";
         }
         return res;
     }
-    @SomeAnnotation(names = "/cleanlist",description = "Clean a Array list of orders", args = "")
-    public String clean(String [] args){
+
+    @SomeAnnotation(names = "/cleanlist", description = "Clean a Array list of orders", args = "")
+    public String clean(String[] args) {
         tables1.clear();
         return "Array list is clear";
+    }
+    @SomeAnnotation(names = "/fact", description = "return factorial of number", args = "")
+    public String fact (String[] args){
+        String res = String.join(" ", args);
+        int res1 = Integer.parseInt(res);
+        float buf = 1f;
+        for (int i = 1; i <= res1; i++) {
+            buf*=i;
+        }
+        return Float.toString(buf);
     }
     @SomeAnnotation(names = {"/revers", "/rev"}, description = "Revers a word", args = "")
     public String reversWord(String[] args) {
@@ -71,5 +82,10 @@ public class BotCommand {
         StringBuilder builder = new StringBuilder(res);
         builder.reverse();
         return builder.toString();
-        }
     }
+
+    @SomeAnnotation(names = "/start", description = "Sey hi to user", args = "")
+    public String start(String[] args) {
+        return "Welcome to the club";
+    }
+}
