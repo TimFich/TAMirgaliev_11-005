@@ -46,9 +46,13 @@ public class BotCommand {
             return "Enter a count of booking place and name of booker:";
         }
         if (cnt == 1) {
-
-            Tables tables = new Tables(Integer.parseInt(message.getText().split(" ")[0]), message.getText().split(" ")[1]);
-            tables1.add(tables);
+            try {
+                Tables tables = new Tables(Integer.parseInt(message.getText().split(" ")[0]), message.getText().split(" ")[1]);
+                tables1.add(tables);
+            }catch (Exception e){
+                System.out.println("User write something wrong");
+                return "You write something wrong";
+            }
         }
         System.out.println("booking done");
         return "Your order is in the cart";
